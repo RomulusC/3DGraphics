@@ -1,21 +1,15 @@
 # Projects Settings
 cmake_minimum_required (VERSION 3.1)
-project (opengl-skeleton)
+project (Sandbox VERSION 1.0.0)
+
+file(GLOB VENDORS_SOURCES lib/glad/src/glad.c)
+file(GLOB PROJECT_HEADERS src/*.hpp)
+file(GLOB PROJECT_SOURCES src/*.cpp)
 
 # The main executable
-add_executable(main
-  src/Application.cpp
-  src/Application.cpp
-  src/MyApplication.cpp
-  src/MyApplication.cpp
-  src/glError.hpp
-  src/glError.cpp
-  src/main.cpp
-  src/Shader.hpp
-  src/Shader.cpp
-  lib/glad/src/glad.c
+add_executable(main ${PROJECT_SOURCES} ${PROJECT_HEADERS}                               
+                               ${VENDORS_SOURCES})
 
-)
 set_property(TARGET main PROPERTY CXX_STANDARD 11)
 target_compile_options(main PRIVATE -Wall)
 
