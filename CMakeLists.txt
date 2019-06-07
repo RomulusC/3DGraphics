@@ -13,6 +13,8 @@ add_executable(main
   src/main.cpp
   src/Shader.hpp
   src/Shader.cpp
+  lib/glad/src/glad.c
+
 )
 set_property(TARGET main PROPERTY CXX_STANDARD 11)
 target_compile_options(main PRIVATE -Wall)
@@ -29,3 +31,7 @@ target_link_libraries(main PRIVATE libglew_static)
 # glm
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 target_link_libraries(main PRIVATE glm)
+
+#glad
+include_directories(lib/glad/include)
+

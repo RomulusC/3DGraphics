@@ -1,11 +1,13 @@
 ## A simple OpenGL application, producing user generated 3D graphics.
 
 The focus of this project is to obtain experience in the following:
-* Fammiliarize myself with using CMake for project handling.
-* Fammiliarize myself with Linux development. 
-* Implement graphics manipulaiton through matrix calculations (Translation, Scaling, Rotation) in 3D Space.
+* Fammiliarize myself with using CMake for project handling
+* Fammiliarize myself with Linux development
+* Complete the LearnOpenGL found on https://learnopengl.com
+* Implement graphics manipulaiton through my user created matrix calculation library (Translation, Scaling, Rotation) in 3D Space
 
-The application uses Arthur Sonzogni OpenGL CMake Skeleton application. Introducing CMake with adding external dependencies was quite frustrating, and thus decided on a skeleton project. 
+
+The application uses Arthur Sonzogni OpenGL CMake Skeleton application. Introducing CMake with adding external dependencies was quite frustrating, and thus decided on a skeleton source application where all CMake scripting is taken care of. 
 
 https://github.com/ArthurSonzogni/OpenGL_CMake_Skeleton
 
