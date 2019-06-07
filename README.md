@@ -1,72 +1,53 @@
-OpenGL CMake Skeleton [![Build Status](https://travis-ci.org/ArthurSonzogni/OpenGL_CMake_Skeleton.svg?branch=master)](https://travis-ci.org/ArthurSonzogni/OpenGL_CMake_Skeleton)
-=======================
+## A simple OpenGL application, producing user generated 3D graphics.
 
-A ready to use C++11 CMake OpenGL skeleton using **GLFW**, **Glew** and **glm**. (use git submodules)
+The focus of this project is to obtain experience in the following:
+* Fammiliarize myself with using CMake for project handling.
+* Fammiliarize myself with Linux development. 
+* Implement graphics manipulaiton through matrix calculations (Translation, Scaling, Rotation) in 3D Space.
 
-It compiles on:
- * **WebAssembly**  (on branch webassembly. See instruction below)
- * Linux
- * Windows
- * Mac
+The application uses Arthur Sonzogni OpenGL CMake Skeleton application.
 
-It can compile for the Web with WebAssembly thanks to emscripten, as well as on
-Linux, Windows and Mac.
+https://github.com/ArthurSonzogni/OpenGL_CMake_Skeleton
 
-Shader class and example Application are included.
+The MIT License (MIT)
 
-![output result](output.gif)
 
-I am open to any comments and contributions.
+Copyright (c) 2015 Arthur Sonzogni
 
-Clone (With submodules):
-========================
 
-```
-git clone --recursive git@github.com:ArthurSonzogni/OpenGL_CMake_Skeleton.git
-```
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Alternatively, if you don't used the --recursive option, you can type:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+
+
+## Usage (Linux):
+
 ```bash
-git submodule init
-git submodule update
-```
-
-usage (WebAssembly) : 
----------------------
-Switch to the webassembly branch
-```
-git checkout webassembly
-```
-
-Install emscripten, then
-```bash
-mkdir build_emscripten
-cd build_emscripten
-CC=emcc CXX=em++ cmake ..
-make
-python -m SimpleHTTPServer 8000
-```
-
-Now, visit [http://localhost:8000](http://localhost:8000)
-
-usage (Linux) : 
----------------
-Some standard library to install:
-```bash
-sudo apt-get install cmake libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
-
-Open the directory into a terminal
-```bash
+git clone --recursive https://github.com/RomulusC/3D-Basics.git
+cd 3D-Basics
 mkdir build
 cd build
-cmake ..
+cmake..
+make
 ./main
 ```
 
-usage (Windows) :
------------------
-For instance :
-* cmake-gui .
-* Configure (Choose for example Visual Studio generator)
-* Generate
-Launch the generated project in your favorite IDE and run it.
+
+
+
+
