@@ -39,7 +39,7 @@ SOFTWARE.
 
 ```bash
 git clone --recursive https://github.com/RomulusC/3DGraphics.git
-cd 3D-Basics
+cd 3DGraphics
 mkdir build
 cd build
 cmake..
