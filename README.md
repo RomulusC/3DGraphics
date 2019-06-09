@@ -46,7 +46,7 @@ git clone --recursive https://github.com/RomulusC/3DGraphics.git
 cd 3DGraphics
 mkdir build
 cd build
-cmake ..
+cmake Unix Makefiles ..
 make
 ./main
 ```
