@@ -66,6 +66,7 @@ cmake -G "Visual Studio 15 2017" ..
 ```
 * Open the Sandbox.sln
 * Select the "Build Startup Project" to "main". 
+
 ![output result](BuildStartupProject.png)
 
 
