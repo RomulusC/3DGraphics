@@ -52,21 +52,20 @@ make
 ```
 
 ## Usage (Windows + MSVC_17):
-I recommend using git for windows found here: https://gitforwindows.org/ ,
+* I recommend using git for windows found here: https://gitforwindows.org/ ,
 this prevents the setting up awkward environmental variables to access git through cmd.
 
-Install Microsoft Visual Studio 2017.
- 
+* Install Microsoft Visual Studio 2017.
+ * Follow commands below using git bash in desired directory. 
 ```bash
 git clone --recursive https://github.com/RomulusC/3DGraphics.git
 cd 3DGraphics
 mkdir build
 cd build
 cmake -G "Visual Studio 15 2017" ..
-make
 ```
-Open the Sandbox.sln
-Select the "Build Startup Project" to "main". 
+* Open the Sandbox.sln
+* Select the "Build Startup Project" to "main". 
 
 
 
