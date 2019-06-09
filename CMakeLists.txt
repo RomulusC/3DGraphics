@@ -2,7 +2,6 @@
 cmake_minimum_required (VERSION 3.1)
 project (Sandbox VERSION 1.0.0)
 
-file(GLOB VENDORS_SOURCES lib/glad/src/glad.c)
 file(GLOB PROJECT_HEADERS src/*.hpp)
 file(GLOB PROJECT_SOURCES src/*.cpp)
 
@@ -10,7 +9,7 @@ file(GLOB PROJECT_SOURCES src/*.cpp)
 add_executable(main ${PROJECT_SOURCES} ${PROJECT_HEADERS}                               
                                ${VENDORS_SOURCES})
 
-set_property(TARGET main PROPERTY CXX_STANDARD 11)
+set_property(TARGET main PROPERTY CXX_STANDARD 17)
 target_compile_options(main PRIVATE -Wall)
 
 # glfw
@@ -25,7 +24,3 @@ target_link_libraries(main PRIVATE libglew_static)
 # glm
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 target_link_libraries(main PRIVATE glm)
-
-#glad
-include_directories(lib/glad/include)
-
