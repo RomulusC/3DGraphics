@@ -9,8 +9,10 @@ namespace ShaderWork
 {
     struct ShaderProgramSource
     {
+		
         const std::string VertexSource;
         const std::string FragmentSource;
+
     };
     static ShaderProgramSource ParseShader(const std::string& filepath)
     {
@@ -39,20 +41,20 @@ namespace ShaderWork
             }                    
         }
 
-        return {ss[0].str().c_str(), ss[1].str().c_str()};
+        return {ss[0].str(), ss[1].str()};
     }
 
     //Links vertex and fragment shaders and returns an int GL ID for the shader program
     int LinkShaders(std::string filepath)
-    {        
-
-        ShaderProgramSource source = ParseShader(filepath);           
+    {        		
+        ShaderProgramSource source = ParseShader(filepath);   
+		
         // build and compile our shader program
         // ------------------------------------
         // vertex shader
         int vertexShader = glCreateShader(GL_VERTEX_SHADER);
-        
-        glShaderSource(vertexShader, 1, (const GLchar**)&source.VertexSource, NULL);        
+        const char* x = source.VertexSource.c_str();
+        glShaderSource(vertexShader, 1, &x, NULL);        
         glCompileShader(vertexShader);        
         
         // check for shader compile errors
@@ -62,14 +64,17 @@ namespace ShaderWork
         glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &success);
         if (!success)
         {
-            glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);
+            glGetShaderInfoLog(vertexShader, 512, NULL, infoLog);      
+           
             std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
+            system("pause");
             return -1;
         }
         
         // fragment shader
         int fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-        glShaderSource(fragmentShader, 1, (const GLchar**)&source.FragmentSource, NULL);
+        x = source.FragmentSource.c_str();
+        glShaderSource(fragmentShader, 1, &x, NULL);
         glCompileShader(fragmentShader);
         // check for shader compile errors
         glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &success);
@@ -77,6 +82,7 @@ namespace ShaderWork
         {
             glGetShaderInfoLog(fragmentShader, 512, NULL, infoLog);
             std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
+           
             return -1;
         }
         // link shaders

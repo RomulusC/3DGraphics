@@ -36,8 +36,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 
+## Usage (General):
+Install CMake for your command line. 
 
-## Usage (Linux):
+## Usage (Linux + Unix Makefiles):
 
 ```bash
 git clone --recursive https://github.com/RomulusC/3DGraphics.git
@@ -48,6 +50,23 @@ cmake ..
 make
 ./main
 ```
+
+## Usage (Windows + MSVC_17):
+I recommend using git for windows found here: https://gitforwindows.org/ ,
+this prevents the setting up awkward environmental variables to access git through cmd.
+
+Install Microsoft Visual Studio 2017.
+ 
+```bash
+git clone --recursive https://github.com/RomulusC/3DGraphics.git
+cd 3DGraphics
+mkdir build
+cd build
+cmake -G "Visual Studio 15 2017" ..
+make
+```
+Open the Sandbox.sln
+Select the "Build Startup Project" to "main". 
 
 
 

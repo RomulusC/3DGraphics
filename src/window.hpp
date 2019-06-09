@@ -23,7 +23,7 @@ namespace WindowHandler
 
         // glfw window creation
         // --------------------
-        char str[SCR_TITLE.size()+1];
+        char str[7+1];
         strcpy(str, SCR_TITLE.c_str());
         GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, str, NULL, NULL);
         if (window == nullptr)
