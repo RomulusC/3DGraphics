@@ -37,8 +37,7 @@ SOFTWARE.
 
 
 ## Usage (General):
-Install CMake for your command line. 
-
+Install CMake for your command line. Found at https://cmake.org/download/. Make sure to select "add system PATH for all users" during instillation.
 ## Usage (Linux + Unix Makefiles):
 
 ```bash
@@ -65,7 +64,7 @@ cd build
 cmake -G "Visual Studio 15 2017" ..
 ```
 * Open the Sandbox.sln
-* Select the "Build Startup Project" to "main". 
+* Right click on the "Solution 'Sandbox'" and select "Single startup project" to "Main"
 
 ![output result](BuildStartupProject.png)
 
