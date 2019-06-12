@@ -50,7 +50,7 @@ make
 ./main
 ```
 
-## Usage (Windows + MSVC_17):
+## Usage (Windows + MSVC):
 * I recommend using git for windows found here: https://gitforwindows.org/ ,
 this prevents the setting up awkward environmental variables to access git through cmd.
 
@@ -61,7 +61,8 @@ git clone --recursive https://github.com/RomulusC/3DGraphics.git
 cd 3DGraphics
 mkdir build
 cd build
-cmake -G "Visual Studio 15 2017" ..
+cmake -G "[INSTALLED MSVC VERSION]" .. #Replace [INSTALLED MSVC VERSION] with your installed version. e.g:
+# cmake -G "Visual Studio 16 2019" ..
 ```
 * Open the Sandbox.sln
 * Right click on the "Solution 'Sandbox'" and select "Single startup project" to "Main"
