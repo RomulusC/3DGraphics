@@ -52,9 +52,9 @@ make
 
 ## Usage (Windows + MSVC):
 * I recommend using git for windows found here: https://gitforwindows.org/ ,
-this prevents the setting up awkward environmental variables to access git through cmd.
+this prevents the manual setting up of environmental variables to access git through cmd.
 
-* Install Microsoft Visual Studio 2017.
+* Install most recent Microsoft Visual Studio version, with the "Desktop Development for C++" in the installation. 
  * Follow commands below using git bash in desired directory. 
 ```bash
 git clone --recursive https://github.com/RomulusC/3DGraphics.git
