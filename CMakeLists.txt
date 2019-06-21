@@ -2,8 +2,9 @@
 cmake_minimum_required (VERSION 3.1)
 project (Sandbox VERSION 1.0.0)
 
-file(GLOB PROJECT_HEADERS src/*.hpp)
+file(GLOB PROJECT_HEADERS src/*.hpp, src/*.h)
 file(GLOB PROJECT_SOURCES src/*.cpp)
+file(GLOB VENDORS_SOURCES src/vendors/stb_image/*.h, src/vendors/stb_image/*.cpp)
 
 # The main executable
 add_executable(main ${PROJECT_SOURCES} ${PROJECT_HEADERS}                               
