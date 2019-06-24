@@ -58,12 +58,6 @@ int main()
       1, 2, 3   // second triangle
   };
 
-  float texCoords[] = {
-      0.0f, 0.0f,  // lower-left corner
-      1.0f, 0.0f,  // lower-right corner
-      0.5f, 1.0f   // top-center corner
-  };
-
   //VERTEX ARRAY CONFIGURATION
   unsigned int VBO, VAO, EBO;
 
@@ -196,6 +190,7 @@ int main()
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------
   glfwTerminate();
+  std::cout << "Application Succesfully terminated!\n";
   return 0;
 }
 
