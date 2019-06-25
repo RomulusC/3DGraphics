@@ -1,5 +1,4 @@
 #pragma once
-
 #include <GL/glew.h>
 
 #ifdef _MSC_VER
