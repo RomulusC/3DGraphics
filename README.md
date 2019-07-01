@@ -4,7 +4,7 @@ The focus of this project is to obtain experience in the following:
 * Fammiliarize with using CMake for project handling
 * Fammiliarize with Linux development
 * Complete the LearnOpenGL tutorial found on https://learnopengl.com
-* Implement graphics manipulaiton through my user created matrix calculation library (Translation, Scaling, Rotation) in 3D Space
+* Implement graphics manipulaiton through my user created matrix calculation library (Translation, Scaling, Rotation) in 3D Space (Try to not use GML library)
 
 
 The application uses Arthur Sonzogni OpenGL CMake Skeleton application. Introducing CMake with adding external dependencies was quite frustrating, and thus decided on a source skeleton application where all CMake configuration is taken care of. 
