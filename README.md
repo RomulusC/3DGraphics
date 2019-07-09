@@ -19,6 +19,10 @@ cmake Unix Makefiles ..
 make
 ./main
 ```
+To enable debbugging:
+```bash
+cmake -DCMAKE_BUILD_TYPE=Debug ..
+```
 
 ## Usage (Windows + MSVC):
 * I recommend using git for windows found here: https://gitforwindows.org/ ,
