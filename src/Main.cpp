@@ -2,7 +2,7 @@
 #include "Window.h"
 #include "vendors/stb_image/stb_image.h"
 #include "Renderer.h"
-#include "Camera.h"
+#include "FPS_Camera.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -33,10 +33,7 @@ float lastFrame = 0.0f;
 
 
 int main(int argc,char* argv[]) 
-{ 
-  
-
-
+{
   bool SCR_FULLSCREEN = false;  
        
     if(argc>=2) 
@@ -137,7 +134,6 @@ int main(int argc,char* argv[])
   // texture coord attribute
   GLCall(glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float))));
   GLCall(glEnableVertexAttribArray(1));
-
 
   // load and create a texture 
   // -------------------------
@@ -260,9 +256,9 @@ int main(int argc,char* argv[])
    
     
 
-	  // render containers
+	// render containers
     // model transformation
-	  GLCall(glBindVertexArray(VAO));
+	GLCall(glBindVertexArray(VAO));
     for(unsigned int i = 0; i < 10; i++)
     {
       glm::mat4 model = glm::mat4(1.0f);
@@ -297,7 +293,7 @@ int main(int argc,char* argv[])
 
   // glfw: terminate, clearing all previously allocated GLFW resources.
   // ------------------------------------------------------------------
-  GLCall(glfwTerminate());
+ 
   return 0;
 }
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
@@ -343,7 +339,6 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
 // ----------------------------------------------------------------------
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
-{
-  
+{ 
     camera.ProcessMouseScroll(yoffset);
 }

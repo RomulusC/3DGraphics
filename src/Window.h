@@ -6,7 +6,7 @@
 class Window
 {  
   private:
-  GLFWwindow* m_window;  
+  GLFWwindow* m_window = nullptr;  
   struct WindowData
   {
     unsigned int m_width;
@@ -21,9 +21,8 @@ class Window
   // Initiates Window context using GLFW and GLEW
   Window(const unsigned int SCR_WIDTH, const unsigned int SCR_HEIGHT, const std::string SCR_TITLE, const bool fullscreen) 
   {
-    m_data = {SCR_WIDTH,SCR_HEIGHT,SCR_TITLE,fullscreen};
-    
-    
+    m_data = {SCR_WIDTH,SCR_HEIGHT,SCR_TITLE,fullscreen};    
+	
     if(m_window!=nullptr)
     {     
       this->~Window();
@@ -73,7 +72,7 @@ class Window
       WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
       data.m_width = width;
       data.m_height = height;
-      glViewport(0, 0, width, height); 
+      GLCall(glViewport(0, 0, width, height)); 
     });
 
     int major, minor, revision;
@@ -102,7 +101,7 @@ class Window
     glfwDestroyWindow(m_window);
     glfwTerminate();
     m_window = nullptr;   
-    std::cout<<"Window destroyed!\n";
+    std::cout<<"Status: Window destroyed!\n";
   }
 
    GLFWwindow* GetWindow()

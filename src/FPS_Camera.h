@@ -111,8 +111,7 @@ public:
 
     // Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     void ProcessMouseScroll(float yoffset)
-    {
-        std::cout<<Zoom<<"\n";
+    {       
         if (Zoom >= 1.0f && Zoom <= ZOOM)
             Zoom -= yoffset;
         if (Zoom <= 1.0f)
