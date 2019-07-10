@@ -8,21 +8,44 @@
 #include <glm/gtc/type_ptr.hpp>
 
 void processInput(GLFWwindow* window);
-float value = -.5f;
-int main() 
-{
+
+// camera
+glm::vec3 cameraPos   = glm::vec3(0.0f, 0.0f,  3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp    = glm::vec3(0.0f, 1.0f,  0.0f);
+
+// timing
+float deltaTime = 0.0f;	// time between current frame and last frame
+float lastFrame = 0.0f;
+
+int main(int argc,char* argv[]) 
+{ 
   // settings
-  #define SCR_WIDTH 800
-  #define SCR_HEIGHT 600
+  #define SCR_WIDTH 1920
+  #define SCR_HEIGHT 1080
+  
   #define SCR_TITLE "Sandbox"
   #define SHADER_PATH "../res/shader/Basic.shader"
   #define TEXTURE_PATH "../res/textures/container.jpg"
   #define TEXTURE_PATH2 "../res/textures/awesomeface.png"
 
+
+  bool SCR_FULLSCREEN = false;  
+       
+    if(argc>=2) 
+    { 
+        for(int i = 0; i < argc; i++)
+        {
+          if(std::string(argv[i]) == "-f")
+          {
+            SCR_FULLSCREEN = true;
+          }            
+        }
+    }
+
   // Initiates Window context using GLFW and GLEW
-  //--------------------------------------------
-  GLFWwindow* window = nullptr;
-  SetUpWindow(SCR_WIDTH, SCR_HEIGHT, SCR_TITLE, window);
+  //-------------------------------------------- 
+  Window window = Window(SCR_WIDTH, SCR_HEIGHT, SCR_TITLE, SCR_FULLSCREEN);
   //--------------------------------------------
 
  // build and compile our shader zprogram
@@ -173,14 +196,24 @@ int main()
 
   glEnable(GL_DEPTH_TEST);  
 
+  
+
   // render loop
   // -----------
-  std::cout << "Render Loop Started!\n";
-  while (!glfwWindowShouldClose(window))
+  std::cout << "Status: Render Loop Started!\n";
+  while (!glfwWindowShouldClose(window.GetWindow()))
   {
+
+    // per-frame time logic
+    // --------------------
+    float currentFrame = glfwGetTime();
+    deltaTime = currentFrame - lastFrame;
+    lastFrame = currentFrame;
+
+    
 	  // input
 	  // -----
-	  processInput(window);
+	  processInput(window.GetWindow());
 
 	  // render
 	  // ------
@@ -192,53 +225,49 @@ int main()
 	  GLCall(glBindTexture(GL_TEXTURE_2D, texture1));
 	  GLCall(glActiveTexture(GL_TEXTURE1));
 	  GLCall(glBindTexture(GL_TEXTURE_2D, texture2));
-/*
-	  // Model View Projection 
-	  glm::mat4 model = glm::mat4(1.0f);
-    model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 0.0f));  
- 
-*/
-    glm::mat4 view = glm::mat4(1.0f);
-    // note that we're translating the scene in the reverse direction of where we want to move
-    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f)); 
 
+    
+    ourShader.use();
+    // projection transformation
     glm::mat4 projection;
-    projection = glm::perspective(glm::radians(70.0f), float(800 / 600), 0.1f, 100.0f);
+    projection = glm::perspective(glm::radians(90.0f), float(window.GetWidth())/float(window.GetHeight()), 0.1f, 100.0f);
+    ourShader.setMat4("projection", projection);
 
+    // camera/view transformation
+    glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+    ourShader.setMat4("view", view);
+
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	  // render containers
+    // model transformation
+	  glBindVertexArray(VAO);
+    for(unsigned int i = 0; i < 10; i++)
+    {
+      glm::mat4 model = glm::mat4(1.0f);
+      model = glm::translate(model, cubePositions[i]);
+      float angle = 20.0f * i * sin((float)glfwGetTime()); 
+      model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
+      ourShader.setMat4("model", model);
+
+      glDrawArrays(GL_TRIANGLES, 0, 36);
+    }    
 
     //Assigning Shader Input
     /*/int modelLoc = glGetUniformLocation(ourShader.getID(), "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
     */
-    int viewLoc = glGetUniformLocation(ourShader.getID(), "view");
-    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 
-    int projectionLoc = glGetUniformLocation(ourShader.getID(), "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    
 
-     
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	  // render containers
-	  glBindVertexArray(VAO);
-for(unsigned int i = 0; i < 10; i++)
-{
-  glm::mat4 model = glm::mat4(1.0f);
-  model = glm::translate(model, cubePositions[i]);
-  float angle = value*20.0f * i * sin((float)glfwGetTime()); 
-  model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-  ourShader.setMat4("model", model);
-
-  glDrawArrays(GL_TRIANGLES, 0, 36);
-}
-
-  
 	  // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 	  // -------------------------------------------------------------------------------
-	  glfwSwapBuffers(window);
+	  glfwSwapBuffers(window.GetWindow());
 	  glfwPollEvents();
+    
+    
   }
-  std::cout << "Render Loop End!\n";
+  std::cout << "Status: Render Loop End!\n";
   // optional: de-allocate all resources once they've outlived their purpose:
   // ------------------------------------------------------------------------
   GLCall(glDeleteVertexArrays(1, &VAO));
@@ -253,13 +282,24 @@ for(unsigned int i = 0; i < 10; i++)
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow* window)
+void processInput(GLFWwindow *window)
 {
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-  if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-	  value = -.5f;
-  if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-	  value = .5f;
+   if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
 
+    float cameraSpeed = 2.5f * deltaTime; // adjust accordingly
+    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+        cameraPos += cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+        cameraPos -= cameraSpeed * cameraFront;
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+        cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL ) == GLFW_PRESS)
+        cameraPos.y -=1.0f*cameraSpeed;
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+        cameraPos.y +=1.0f*cameraSpeed;
+
+   
 }

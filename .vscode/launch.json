@@ -16,7 +16,8 @@
             "cwd": "${workspaceFolder}/build/",
             "environment": [],
             "externalConsole": false,
-            "MIMode": "gdb",            
+            "MIMode": "gdb",      
+               
         }
     ]
 }

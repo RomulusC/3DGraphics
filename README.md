@@ -3,7 +3,7 @@
 The focus of this project is to obtain experience in the following:
 * Fammiliarize with using CMake for project handling
 * Fammiliarize with Linux development
-* Complete the LearnOpenGL tutorial found on https://learnopengl.com
+* Complete the LearnOpenGL tutorials found on https://learnopengl.com and https://www.opengl-tutorial.org/ 
 * Implement graphics manipulaiton through my user created matrix calculation library (Translation, Scaling, Rotation) in 3D Space (Try to not use GML library)
 
 ## Usage (General):
