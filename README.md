@@ -1,5 +1,7 @@
 ## A simple OpenGL application, producing user generated 3D graphics.
 
+![output result](Example.gif)
+
 The focus of this project is to obtain experience in the following:
 * Fammiliarize with using CMake for project handling
 * Fammiliarize with Linux development
