@@ -7,7 +7,9 @@ The focus of this project is to obtain experience in the following:
 * Fammiliarize with Linux development
 * Complete the LearnOpenGL tutorials found on https://learnopengl.com and https://www.opengl-tutorial.org/ 
 * Implement graphics manipulaiton through my user created matrix calculation library (Translation, Scaling, Rotation) in 3D Space (Try to not use GML library)
-
+## Usage (Just Executable):
+* Download the file for your operating system, located here: https://github.com/RomulusC/3DGraphics/releases
+* Extract, run the executable located inside the folder.
 ## Usage (General):
 Install CMake for your command line. Found at https://cmake.org/download/. Make sure to select "add system PATH for all users" during instillation.
 ## Usage (Linux + Unix Makefiles):
