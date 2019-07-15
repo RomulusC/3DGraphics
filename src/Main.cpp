@@ -21,8 +21,15 @@ void processInput(GLFWwindow *window);
 #define TEXTURE_PATH "../res/textures/container.jpg"
 #define TEXTURE_PATH2 "../res/textures/awesomeface.png"
 
+// Default camera values
+const float YAW         = -90.0f;
+const float PITCH       =  0.0f;
+const float SPEED       =  2.5f;
+const float SENSITIVITY =  0.1f;
+const float ZOOM        =  90.0f;
+
 // camera
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Camera camera(glm::vec3(0.0f, 0.0f, 3.0f),glm::vec3(0.0f, 1.0f, 0.0f), YAW, PITCH, SPEED, SENSITIVITY, ZOOM);
 float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
@@ -30,7 +37,6 @@ bool firstMouse = true;
 // timing
 float deltaTime = 0.0f;	// time between current frame and last frame
 float lastFrame = 0.0f;
-
 
 int main(int argc,char* argv[]) 
 {
@@ -56,9 +62,7 @@ int main(int argc,char* argv[])
   GLCall(glfwSetScrollCallback(window.GetWindow(), scroll_callback));
 
   // tell GLFW to capture our mouse
-  GLCall(glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED));
-
-  
+  GLCall(glfwSetInputMode(window.GetWindow(), GLFW_CURSOR, GLFW_CURSOR_DISABLED));  
 
   // build and compile our shader zprogram
 	// ------------------------------------
@@ -66,6 +70,7 @@ int main(int argc,char* argv[])
 
   // set up vertex data (and buffer(s)) and configure vertex attributes
   // ------------------------------------------------------------------
+
   float vertices[] = {
     -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
      0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
@@ -115,6 +120,7 @@ int main(int argc,char* argv[])
 	  1, 2, 3  // second triangle
   };
   */
+
   unsigned int VBO, VAO, EBO;
   GLCall(glGenVertexArrays(1, &VAO));
   GLCall(glGenBuffers(1, &VBO));
@@ -207,9 +213,7 @@ int main(int argc,char* argv[])
 
   // configure global opengl state
   // -----------------------------
-  GLCall(glEnable(GL_DEPTH_TEST)); 
-
-  
+  GLCall(glEnable(GL_DEPTH_TEST));   
 
   // render loop
   // -----------
@@ -225,9 +229,7 @@ int main(int argc,char* argv[])
 
     // input
     // -----
-    processInput(window.GetWindow());
-  
-	 
+    processInput(window.GetWindow());	 
 
 	  // render
 	  // ------
@@ -239,25 +241,21 @@ int main(int argc,char* argv[])
 	  GLCall(glBindTexture(GL_TEXTURE_2D, texture1));
 	  GLCall(glActiveTexture(GL_TEXTURE1));
 	  GLCall(glBindTexture(GL_TEXTURE_2D, texture2));
-
     
     ourShader.use();
+
     // projection transformation
     glm::mat4 projection;
     projection = glm::perspective(glm::radians(camera.Zoom), float(window.GetWidth())/float(window.GetHeight()), 0.1f, 100.0f);
     ourShader.setMat4("projection", projection);
 
-    // camera/view transformation
-   
+    // camera/view transformation  
 
     glm::mat4 view = camera.GetViewMatrix();
-    ourShader.setMat4("view", view);
-
-   
-    
+    ourShader.setMat4("view", view);    
 
 	// render containers
-    // model transformation
+  // model transformation
 	GLCall(glBindVertexArray(VAO));
     for(unsigned int i = 0; i < 10; i++)
     {
@@ -269,19 +267,15 @@ int main(int argc,char* argv[])
      
       GLCall(glDrawArrays(GL_TRIANGLES, 0, 36));
     }    
-
     //Assigning Shader Input
     /*/int modelLoc = glGetUniformLocation(ourShader.getID(), "model");
     glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-    */
-
-    
+    */    
 
 	  // glfw: swap buffers and poll IO events (keys pressed/released, mouse moved etc.)
 	  // -------------------------------------------------------------------------------
 	  GLCall(glfwSwapBuffers(window.GetWindow()));
-	  GLCall(glfwPollEvents());
-    
+	  GLCall(glfwPollEvents());   
     
   }
   std::cout << "Status: Render Loop End!\n";
@@ -304,17 +298,17 @@ void processInput(GLFWwindow *window)
         glfwSetWindowShouldClose(window, true);
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
+        camera.ProcessKeyboard(Camera::FORWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
+        camera.ProcessKeyboard(Camera::BACKWARD, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
+        camera.ProcessKeyboard(Camera::LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
+        camera.ProcessKeyboard(Camera::RIGHT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
-        camera.ProcessKeyboard(UP, deltaTime);
+        camera.ProcessKeyboard(Camera::UP, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
-        camera.ProcessKeyboard(DOWN, deltaTime);
+        camera.ProcessKeyboard(Camera::DOWN, deltaTime);
 }
 // glfw: whenever the mouse moves, this callback is called
 // -------------------------------------------------------
@@ -333,7 +327,7 @@ void mouse_callback(GLFWwindow* window, double xpos, double ypos)
     lastX = xpos;
     lastY = ypos;
 
-    camera.ProcessMouseMovement(xoffset, yoffset);
+    camera.ProcessMouseMovement(xoffset, yoffset,true);
 }
 
 // glfw: whenever the mouse scroll wheel scrolls, this callback is called
