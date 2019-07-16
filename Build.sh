@@ -3,4 +3,5 @@ mkdir build
 cd build
 cmake Unix Makefiles -DCMAKE_BUILD_TYPE=Debug ..
 make
+cd Application
 ./Application

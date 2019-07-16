@@ -4,6 +4,8 @@
 #include "Renderer.h"
 #include "FPS_Camera.h"
 
+#include "test.h"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -17,9 +19,9 @@ void processInput(GLFWwindow *window);
 #define SCR_HEIGHT 1080
   
 #define SCR_TITLE "Sandbox"
-#define SHADER_PATH "../res/shader/Basic.shader"
-#define TEXTURE_PATH "../res/textures/container.jpg"
-#define TEXTURE_PATH2 "../res/textures/awesomeface.png"
+#define SHADER_PATH "../../res/shader/Basic.shader"
+#define TEXTURE_PATH "../../res/textures/container.jpg"
+#define TEXTURE_PATH2 "../../res/textures/awesomeface.png"
 
 // Default camera values
 const float YAW         = -90.0f;
@@ -40,6 +42,7 @@ float lastFrame = 0.0f;
 
 int main(int argc,char* argv[]) 
 {
+  Engine::Print();
 	
   bool SCR_FULLSCREEN = false;  
        
@@ -247,7 +250,7 @@ int main(int argc,char* argv[])
 
     // projection transformation
     glm::mat4 projection;
-    projection = glm::perspective(glm::radians(camera.Zoom), float(window.GetWidth())/float(window.GetHeight()), 0.1f, 100.0f);
+    projection = glm::perspective(glm::radians(camera.Zoom), float(window.GetWidth())/float(window.GetHeight()), 0.1f, 10000.0f);
     ourShader.setMat4("projection", projection);
 
     // camera/view transformation  
