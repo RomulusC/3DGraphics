@@ -28,5 +28,5 @@ this prevents the manual setting up of environmental variables to access git thr
 git clone --recursive https://github.com/RomulusC/3DGraphics.git
 ```
 * Run the build.bat script file. (If your Visual Studio version isn't Visual Studio 16 2019, then edit the batch file to include your installed version. EG: [ cmake -G "Visual Studio 15 2017" .. ], additionally you can use the generator type of your choice.)
-* Open the Sandbox.sln
+* Open the Sandbox.sln located in /build.
 * Run the project
