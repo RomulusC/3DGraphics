@@ -10,7 +10,7 @@
             "name": "(gdb) Sandbox",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/main",
+            "program": "${workspaceFolder}/build/Application",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build/",
