@@ -40,6 +40,7 @@ float lastFrame = 0.0f;
 
 int main(int argc,char* argv[]) 
 {
+	
   bool SCR_FULLSCREEN = false;  
        
     if(argc>=2) 

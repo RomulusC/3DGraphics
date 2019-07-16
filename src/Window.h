@@ -17,6 +17,7 @@ class Window
   WindowData m_data;
 
    public: 
+	 
 
   // Initiates Window context using GLFW and GLEW
   Window(const unsigned int SCR_WIDTH, const unsigned int SCR_HEIGHT, const std::string SCR_TITLE, const bool fullscreen);
