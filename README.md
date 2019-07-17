@@ -5,7 +5,7 @@
 The focus of this project is to obtain experience in the following:
 * Fammiliarize with using CMake for project handling
 * Fammiliarize with Linux development
-* Complete the LearnOpenGL tutorials found on https://learnopengl.com and https://www.opengl-tutorial.org/
+* Complete LearnOpenGL tutorials found on: https://learnopengl.com, https://www.opengl-tutorial.org/, https://www.youtube.com/playlist?list=PLlrATfBNZ98dC-V-N3m0Go4deliWHPFwT
 ## Usage (Executable Only):
 * Download the file for your operating system, located here: https://github.com/RomulusC/3DGraphics/releases
 * Extract, run the executable located inside the folder.
