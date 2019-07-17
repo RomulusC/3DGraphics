@@ -1,6 +1,8 @@
 # Projects Settings
-cmake_minimum_required (VERSION 3.1)
-project (Sandbox VERSION 1.0.0)
+cmake_minimum_required (VERSION 3.15.0)
+project (Graphics_Dev VERSION 1.0.0)
+
+set(MASTERDIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Engine
 add_subdirectory(Engine)
@@ -16,4 +18,8 @@ add_subdirectory(lib/glew EXCLUDE_FROM_ALL)
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 
 # Application 
-add_subdirectory(Application)
+add_subdirectory(Sandbox)
+
+# Additional Settings 
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT Sandbox)
+

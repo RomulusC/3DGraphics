@@ -1,5 +1,5 @@
 #pragma once
 namespace Engine
 {
-	void Print();
+	__declspec(dllexport) void Print();
 }

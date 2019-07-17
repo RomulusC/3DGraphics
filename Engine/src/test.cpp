@@ -4,6 +4,6 @@ namespace Engine
 {
 	void Print()
 	{
-		std::cout<<"------------DYNAMIC LINKING WORKED!!!--------\n";
+		std::cout<<"------------STATIC LINKING WORKED!!!--------\n";
 	}
 }
