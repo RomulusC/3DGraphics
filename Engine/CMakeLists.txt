@@ -1,5 +1,5 @@
-#GCC SPACIFIC SETTING, SPDLOG WONT CORRECTLY COMPILE AS A SHARED LIBRARY 
 if(CMAKE_COMPILER_IS_GNUCC)
+#GCC SPACIFIC SETTING, SPDLOG WONT CORRECTLY COMPILE AS A SHARED LIBRARY 
 add_definitions(-fPIC)
 endif (CMAKE_COMPILER_IS_GNUCC) 
 
@@ -9,13 +9,14 @@ file(GLOB ENGINE_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 file(GLOB_RECURSE ENGINE_VENDOR_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/vendors/*.h,${CMAKE_CURRENT_SOURCE_DIR}/src/vendors/*.hpp, 
                                         ${CMAKE_CURRENT_SOURCE_DIR}/src/vendors/*.cpp)
 
+#Configure for Shared Library (DLL or .o)
 add_library(${CURRENT_LIBRARY} SHARED ${ENGINE_HEADERS} ${ENGINE_SOURCES} ${ENGINE_VENDOR_SOURCES})
 
 # spdlog
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendors/spdlog
- EXCLUDE_FROM_ALL)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/vendors/spdlog EXCLUDE_FROM_ALL)
 target_link_libraries(${CURRENT_LIBRARY} PRIVATE spdlog)
 
+# Global Include Directories
 target_include_directories(${CURRENT_LIBRARY} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 target_include_directories(${CURRENT_LIBRARY} PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/vendors/spdlog/include")
 
@@ -25,6 +26,11 @@ if (WIN32)
     add_compile_definitions(EG_PLATFORM_WINDOWS)
     add_compile_definitions(EG_BUILD_DLL)
 
+    if (MSVC)
 
-    set (CMAKE_RUNTIME_OUTPUT_DIRECTORY ${ENGINE_OUTPUT_DIRECTORY})
+    set (CMAKE_RUNTIME_OUTPUT_DIRECTORY CMAKE_BINARY_DIR)
+    Set(ENGINE_DLL_DIR "${CMAKE_BINARY_DIR}/${CURRENT_LIBRARY}/$<CONFIG>/" PARENT_SCOPE)  
+
+    endif (MSVC)
+   
 endif (WIN32)

@@ -25,7 +25,19 @@ if (WIN32)
 # Preprocessor Definitions
     add_compile_definitions(EG_PLATFORM_WINDOWS)
 
-    #SET FILE COPY: [Engine/Debug/Engine.dll] to [Sandbox/Debug/] 
+    if (MSVC)
+
+    #ENGINE.DLL POST_BUILD COPY: [Engine/Debug/Engine.dll] to [Sandbox/Debug/]   
+    set (CMAKE_RUNTIME_OUTPUT_DIRECTORY CMAKE_BINARY_DIR)
+    Set(SANDBOX_EXE_LOC "${CMAKE_BINARY_DIR}/${CURRENT_LIBRARY}/$<CONFIG>/") 
+
+    add_custom_command(TARGET  ${CURRENT_LIBRARY} POST_BUILD        
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different  
+    "${ENGINE_DLL_DIR}/Engine.dll"     
+    ${SANDBOX_EXE_LOC})                 
+    #END ENGINE.DLL POST_BUILD COPY
+
+   endif(MSVC)
 
 endif (WIN32)
 
