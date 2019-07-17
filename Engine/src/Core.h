@@ -7,5 +7,5 @@
 		#define ENGINE_API __declspec(dllimport)
 	#endif
 #else
-	//#error ENGINE ONLY SUPPORTS WINDOWS!
+	#define ENGINE_API
 #endif
