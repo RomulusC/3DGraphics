@@ -1,5 +1,6 @@
 # Projects Settings
 set(CURRENT_LIBRARY "Sandbox")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
 
 file(GLOB PROJECT_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp, ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB PROJECT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
@@ -25,19 +26,28 @@ if (WIN32)
 # Preprocessor Definitions
     add_compile_definitions(EG_PLATFORM_WINDOWS)
 
+    set (CMAKE_RUNTIME_OUTPUT_DIRECTORY CMAKE_BINARY_DIR)
     if (MSVC)
 
-    #ENGINE.DLL POST_BUILD COPY: [Engine/Debug/Engine.dll] to [Sandbox/Debug/]   
-    set (CMAKE_RUNTIME_OUTPUT_DIRECTORY CMAKE_BINARY_DIR)
-    Set(SANDBOX_EXE_LOC "${CMAKE_BINARY_DIR}/${CURRENT_LIBRARY}/$<CONFIG>/") 
+        #ENGINE.DLL POST_BUILD COPY: [Engine/Debug/Engine.dll] to [Sandbox/Debug/]   
+        
+        Set(SANDBOX_EXE_LOC "${CMAKE_BINARY_DIR}/${CURRENT_LIBRARY}/$<CONFIG>/") 
 
-    add_custom_command(TARGET  ${CURRENT_LIBRARY} POST_BUILD        
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different  
-    "${ENGINE_DLL_DIR}/Engine.dll"     
-    ${SANDBOX_EXE_LOC})                 
-    #END ENGINE.DLL POST_BUILD COPY
+        add_custom_command(TARGET  ${CURRENT_LIBRARY} POST_BUILD        
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different  
+        "${ENGINE_DLL_DIR}/Engine.dll"     
+        ${SANDBOX_EXE_LOC})                 
+        #END ENGINE.DLL POST_BUILD COPY
+    else (MSVC)
+        
+        Set(SANDBOX_EXE_LOC "${CMAKE_BINARY_DIR}/${CURRENT_LIBRARY}/") 
 
-   endif(MSVC)
+        add_custom_command(TARGET  ${CURRENT_LIBRARY} POST_BUILD        
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different  
+        "${ENGINE_DLL_DIR}/libEngine.dll"     
+        ${SANDBOX_EXE_LOC})   
+
+    endif(MSVC)
 
 endif (WIN32)
 

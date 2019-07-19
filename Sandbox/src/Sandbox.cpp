@@ -18,5 +18,7 @@ public:
 
 Engine::Application* Engine::CreateApplication()
 {
+
+	EG_FATAL("OH NO!");	
 	return new Sandbox();
 }
