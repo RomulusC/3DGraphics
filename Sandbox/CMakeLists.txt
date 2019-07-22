@@ -1,6 +1,6 @@
 # Projects Settings
 set(CURRENT_LIBRARY "Sandbox")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -static")
+
 
 file(GLOB PROJECT_HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.hpp, ${CMAKE_CURRENT_SOURCE_DIR}/src/*.h)
 file(GLOB PROJECT_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
