@@ -1,12 +1,14 @@
 #pragma once
-#include <memory>
+#include "egpch.h"
 
-#include "Core.h"
+
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
+
 
 namespace Engine
 {
-	class ENGINE_API Log
+	class Log
 	{
 	public:
 		
@@ -18,9 +20,6 @@ namespace Engine
 	private:
 		static std::shared_ptr<spdlog::logger> s_CoreLogger;
 		static std::shared_ptr<spdlog::logger> s_ClientLogger;
-
-
-
 	};
 }
 //Core Log Macros
