@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Window/Windows.h"
-
-
 #include <GLFW/glfw3.h>
 
 namespace Engine {
@@ -39,5 +37,4 @@ namespace Engine {
 
 		WindowData m_Data;
 	};
-
 }
