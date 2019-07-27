@@ -1,8 +1,6 @@
 {
-    //NOTE: USE FOR DEBUG WITH CMAKE, UNIX MAKEFILE, VS CODE
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    //NOTE: For use with Mingw/Unix Makefile
+
     "version": "0.2.0",
     "configurations": [
         
@@ -16,10 +14,10 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build/Sandbox/",
             "environment": [],
-            "externalConsole": true,
+            "externalConsole": false,
             "MIMode": "gdb",
             //FOR WINDOWS, GDB MUST BE 64 BIT AS WELL AS MING64
-            "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe" 
+            //"miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe" 
             //REMOVE miDebuggerPath for linux    
             }
     ]
