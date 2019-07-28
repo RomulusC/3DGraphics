@@ -2,30 +2,29 @@
 
 #ifdef EG_PLATFORM_WINDOWS
 	#define DEBUG_BREAK __debugbreak()
-/*
-	#ifdef EG_BUILD_DLL
-		#define  __declspec(dllexport)
-	#else 
-		#define  __declspec(dllimport)
-	#endif
-#else
-	#define 
-	*/
-
 #else
 	#define DEBUG_BREAK __builtin_trap()
 #endif
 
-
-#ifdef EG_ENABLE_ASSERTS
-	#define EG_ASSERT(x, ...) { if(!(x)) { EG_ERROR("Assertion Failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }
-		#define EG_CORE_ASSERT(x, ...) { if(!(x)) { EG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }
-	#else
-		#define EG_ASSERT(x, ...)
-		#define EG_CORE_ASSERT(x, ...)
+#ifdef EG_DEBUG
+	#define EG_ENABLE_ASSERTS
+#else
+	#warning "---Not Debug---"
+	
+	
 #endif
 
+#ifdef EG_ENABLE_ASSERTS
+	#define EG_ASSERT(x, ...) { if(!(x)) { EG_ERROR("Assertion Failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }	
+	#define EG_CORE_ASSERT(x, ...) { if(!(x)) { EG_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); DEBUG_BREAK; } }
+#else	
+	#define EG_ASSERT(x, ...)
+	#define EG_CORE_ASSERT(x, ...)
+#endif
+
+#define EG_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1) 
 #define BIT(x) (1 << x)
+
 /*
 How a bitfield works.
 

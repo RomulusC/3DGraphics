@@ -21,22 +21,18 @@ target_link_libraries(Engine PUBLIC glfw)
 add_subdirectory(vendors/GLAD EXCLUDE_FROM_ALL)
 target_link_libraries(Engine PUBLIC GLAD)
 
-#add_definitions(-DGLEW_STATIC)
-#add_subdirectory(vendors/glew EXCLUDE_FROM_ALL)
-#target_link_libraries(Engine PRIVATE libglew_static)
-
+# imgui
+add_subdirectory(vendors/imgui EXCLUDE_FROM_ALL)
+target_link_libraries(Engine PUBLIC imgui)
 
 # glm
 add_subdirectory(vendors/glm EXCLUDE_FROM_ALL)
 target_link_libraries(Engine PRIVATE glm)
 
 # Global Include Directories
-target_include_directories(Engine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src"
-"${CMAKE_CURRENT_SOURCE_DIR}/vendors/glm/glm")
+target_include_directories(Engine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 add_compile_definitions(GLFW_INCLUDE_NONE)   
-add_compile_definitions(EG_ENABLE_ASSERTS)   
-
 
 if (WIN32)
     # Preprocessor Definitions

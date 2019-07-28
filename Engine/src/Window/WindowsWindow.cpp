@@ -37,7 +37,7 @@ namespace Engine {
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
 
-		EG_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
+		//EG_CORE_INFO("Creating window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 
 		if (!s_GLFWInitialized)
 		{
@@ -133,6 +133,12 @@ namespace Engine {
 			MouseMovedEvent event((float)xPos, (float)yPos);
 			data.EventCallback(event);
 
+		});
+		glfwSetCharCallback(m_Window, [](GLFWwindow* window, unsigned int keycode)
+		{
+			WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+			KeyTypedEvent event(keycode);
+			data.EventCallback(event);
 		});
 	}
 

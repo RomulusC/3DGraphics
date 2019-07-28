@@ -2,6 +2,8 @@
 cmake_minimum_required (VERSION 3.1)
 project (Graphics_Dev VERSION 1.0.0)
 
+add_compile_definitions(EG_DEBUG)   
+
 # Engine
 add_subdirectory(Engine)
 
