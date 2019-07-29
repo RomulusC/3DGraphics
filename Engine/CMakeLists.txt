@@ -30,7 +30,8 @@ add_subdirectory(vendors/glm EXCLUDE_FROM_ALL)
 target_link_libraries(Engine PRIVATE glm)
 
 # Global Include Directories
-target_include_directories(Engine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(Engine PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/src"
+"${CMAKE_CURRENT_SOURCE_DIR}/vendors/glm/")
 
 add_compile_definitions(GLFW_INCLUDE_NONE)   
 
@@ -40,3 +41,4 @@ if (WIN32)
 
 
 endif (WIN32)
+

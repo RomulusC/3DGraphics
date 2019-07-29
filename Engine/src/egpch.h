@@ -12,7 +12,6 @@
 #include <unordered_set>
 
 #define GLM_ENABLE_EXPERIMENTAL
-#include <glm/gtx/quaternion.hpp>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
 
