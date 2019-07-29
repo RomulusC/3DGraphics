@@ -1,4 +1,5 @@
 #include "egpch.h"
+#include "Log.h"
 #include "Window/WindowsWindow.h"
 
 #include <glad/glad.h>
@@ -7,7 +8,8 @@
 #include "Events/MouseEvent.h"
 #include "Events/KeyEvent.h"
 
-namespace Engine {
+namespace Engine 
+{
 	
 	static bool s_GLFWInitialized = false;
 
@@ -167,5 +169,5 @@ namespace Engine {
 	bool WindowsWindow::IsVSync() const
 	{
 		return m_Data.VSync;
-	}
+	}	
 }

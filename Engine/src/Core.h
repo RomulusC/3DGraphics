@@ -11,7 +11,6 @@
 #else
 	#warning "---Not Debug---"
 	
-	
 #endif
 
 #ifdef EG_ENABLE_ASSERTS

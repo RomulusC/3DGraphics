@@ -1,4 +1,3 @@
-rmdir /Q /S build
 mkdir build
 xcopy /y ".\Engine\vendors\CMakeLists\ImGui\CMakeLists.txt" ".\Engine\vendors\imgui"
 cd build

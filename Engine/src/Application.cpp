@@ -1,6 +1,12 @@
 #include "egpch.h"
 #include "Application.h"
+#include "Input.h"
+#include "Core.h"
+#include "Log.h"
+//needs removing
 #include <glad/glad.h>
+
+
 
 namespace Engine
 {
@@ -29,7 +35,11 @@ namespace Engine
 
 			for(Layer* layer : m_LayerStack)
 				layer->OnUpdate();
-
+			if (Input::IsMosueButtonPressed(EG_MOUSE_BUTTON_1))
+				EG_CORE_TRACE("M1 Pressed");
+			if (Input::IsKeyPressed(EG_KEY_A))
+				EG_CORE_TRACE("A Pressed");
+			
 			m_Window->OnUpdate();			
 		}	
 	}

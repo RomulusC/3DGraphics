@@ -11,13 +11,6 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#define GLM_ENABLE_EXPERIMENTAL
-#include <glm/glm.hpp>
-#include <glm/ext.hpp>
-
-
-#include "Log.h"
-
 #ifdef EG_PLATFORM_WINDOWS
 	#include <Windows.h>
 #endif // #EG_PLATFORM_WINDOWS
